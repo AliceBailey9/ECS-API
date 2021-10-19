@@ -5,6 +5,11 @@ const fetchAllCars = (cb) => {
   cb(null, data);
 };
 
+const fetchCar = (car_id, cb) => {
+  const car = data.filter((car) => car.id == car_id);
+  cb(null, car);
+};
+
 const addCar = (carData, cb) => {
   carData.id = data.length + 1;
   data.push(carData);
@@ -16,4 +21,4 @@ const addCar = (carData, cb) => {
   });
 };
 
-module.exports = { fetchAllCars, addCar };
+module.exports = { fetchAllCars, addCar, fetchCar };
