@@ -12,14 +12,17 @@ const fetchCar = (car_id, cb) => {
 
 const deleteTheCar = (car_id, cb) => {
   for (let i = 0; i < data.length; i++) {
-    //console.log(data[i], car_id, "hey");
     if (data[i].id == car_id) {
       data.splice(i, 1);
-      //console.log(data);
     }
   }
   data.forEach((car, index) => (car.id = index + 1));
-  cb(null, data);
+  fs.writeFile("./data/carData.json", JSON.stringify(data, null, 2), (err) => {
+    if (err) console.log(err);
+    else {
+      cb(null, data);
+    }
+  });
 };
 
 const addCar = (carData, cb) => {
